@@ -2,11 +2,13 @@
 
 # CodeWorld
 
-> 使用Vue全家桶+Node.js搭建的小型全栈项目.
+> 一个基于微服务的全套商城系统CodeWorld-Cloud-Shop
 
 * 前端框架：vue-cli、vue-router、axios、vuex
-* UI类库：Mint-UI、Vant
-* 后端数据接口：Express、MongoDB
+* 后端框架：SpringBoot、MyBatis、Redis、RabbitMQ、XXL-JOB等技术
+* App：Uniapp
 
-[GitHub](https://github.com/Hanxueqing/Douban-Movie.git)
+[后端项目地址](https://github.com/javaenigneer/codeworld-cloud-shop-api)
+[前端项目地址](https://github.com/javaenigneer/code-shop-system)
+[App端项目地址](https://github.com/javaenigneer/code-shop-app)
 [Get Started](#quick-start)
