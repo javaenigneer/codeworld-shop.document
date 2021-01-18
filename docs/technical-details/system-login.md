@@ -1,7 +1,264 @@
 ## CodeWorld-Cloud-Shop 系统登录详解篇---手把手教学
 > 本篇文章我们主要讲述我们在登录时怎么获取我们的权限信息，怎么实现登录认证
+
 相信在学习这篇文章时，你已经装好了全部的环境
+* [CodeWorld-Cloud-Shop Redis的安装和使用](environmental-installation/environmental-installation-redis.md)
+* [CodeWorld-Cloud-Shop RabbitMQ的安装和使用](environmental-installation/environmental-installation-rabbitmq.md)
+* [CodeWorld-Cloud-Shop ElasticSearch的安装和使用](environmental-installation/environmental-installation-elasticsearch.md)
 ### POM文件
 ```java
+<dependencies>
+        <!-- nacos 注册中心 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <version>0.2.2.RELEASE</version>
+        </dependency>
+        <!-- openFeign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>2.0.2.RELEASE</version>
+        </dependency>
+        <!-- web模块 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
+        <!--Jwt-->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+        <!-- Jwt-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+        <!-- lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <!-- Hibernate校验 -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.1.5.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.common</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>5.0.1.Final</version>
+        </dependency>
+
+        <!-- Hutool工具类 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codeworld.fc</groupId>
+            <artifactId>codeworld-cloud-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 ```
+### application.yml文件
+```java
+server:
+  port: 8004 # 端口
+spring:
+  application:
+    name: codeworld-cloud-auth # 服务名称
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # nacos 服务注册地址
+        register-enabled: true
+        weight: 1
+  main:
+    allow-bean-definition-overriding: true # 允许覆盖重名的bean
+
+codeworld:  # jwt密钥信息
+  jwt:
+    secret: codeworld@Login(Auth}*^31)&codeworld% # 用于生存rsa公钥和私钥的密文,越复杂越好
+    pubKeyPath: D:\\temp\\rsa\\rsa.pub # 公钥地址
+    priKeyPath: D:\\temp\\rsa\\rsa.pri # 私钥地址
+    expire: 30   # 过期时间,单位分钟
+    cookieMaxAge: 180000
+    cookieName: token
+```
+### 首先来看我们common模块里的工具类
+> JwtConstans 主要是用来作为设置用户信息
+```java
+public abstract class JwtConstans {
+    public static final String JWT_KEY_ID = "id";
+    public static final String JWT_KEY_PHONE = "phone";
+    public static final String JWT_KEY_RESOURCES = "resources";
+}
+```
+> JwtUtils 生成token信息，并从token中获取用户信息,使用公钥解析
+```java
+/**
+     * 私钥加密token
+     *
+     * @param loginInfoData      载荷中的数据
+     * @param privateKey    私钥
+     * @param expireMinutes 过期时间，单位秒
+     * @return
+     * @throws Exception
+     */
+    public static String generateToken(LoginInfoData loginInfoData, PrivateKey privateKey, int expireMinutes) throws Exception {
+        return Jwts.builder()
+                .claim(JwtConstans.JWT_KEY_ID, loginInfoData.getId())
+                .claim(JwtConstans.JWT_KEY_PHONE, loginInfoData.getPhone())
+                .claim(JwtConstans.JWT_KEY_RESOURCES, loginInfoData.getResources())
+                .setExpiration(DateTime.now().plusMinutes(expireMinutes).toDate())
+                .signWith(SignatureAlgorithm.RS256, privateKey)
+                .compact();
+    }
+
+ /**
+     * 公钥解析token
+     *
+     * @param token     用户请求中的token
+     * @param publicKey 公钥
+     * @return
+     * @throws Exception
+     */
+    private static Jws<Claims> parserToken(String token, PublicKey publicKey) {
+        return Jwts.parser().setSigningKey(publicKey).parseClaimsJws(token);
+    }
+```
+> LoingInfoData 来存放用户的基本信息
+```java
+@Data
+public class LoginInfoData {
+
+    /**
+     * id
+     */
+    private Long id;
+
+    /**
+     * 手机号
+     */
+    private String phone;
+
+    /**
+     * 对象数据
+     */
+    private String resources;
+
+    public LoginInfoData(Long id, String phone, String resources) {
+        this.id = id;
+        this.phone = phone;
+        this.resources = resources;
+    }
+
+    public LoginInfoData() {
+    }
+
+    public LoginInfoData(String resources) {
+        this.resources = resources;
+    }
+}
+```
+那么这样我们的登录前缀就已经好了
+用户通过手机号和密码来实现登录
+那么我们就可以通过手机和密码来查询用户信息并通过用户的id和手机号来设置token信息
+id、phone ---> token
+
+### 我们直接从我们的Controller进入
+```java
+    @PostMapping("system-login")
+    @ApiOperation("系统后台登录")
+    @PassToken
+    public FCResponse<Map<String, Object>> systemLogin(@RequestBody @Valid SystemLoginRequest systemLoginRequest,
+                                                       HttpServletRequest request,
+                                                       HttpServletResponse response){
+        return this.authService.systemLogin(systemLoginRequest,request,response);
+    }
+```
+```text
+相信这里面的注解应该都知道什么意思吧（有部分注解会单独讲解）
+@PostMapping ---> post请求
+@ApiOperation---> Swagger的注解，操作接口名称
+@RequestBody---> 前端请求发送Json数据，后端使用它来接收
+@Valid---> Hiberate的一个信息校验
+```
+那么到了这一步我们就基本了解接口的作用啦
+### Service方法
+```java
+/**
+     * 系统后台登录
+     * @param systemLoginRequest
+     * @param request
+     * @param response
+     * @return
+     */
+    FCResponse<Map<String, Object>> systemLogin(SystemLoginRequest systemLoginRequest, HttpServletRequest request, HttpServletResponse response);
+```
+这个没什么讲解
+### ServiceImpl方法
+```java
+// 首先来看我们的方法体，我们首先判断了一个是否是商户登录 2118
+// 那么这个2118是怎么来的呢，我们下后面章节会提到，这里就先不详细讲解
+// 你只要知道以2118开头的是商户登录就行
+// 如果是商户登录
+// 进行商户登录---那么就会执行这一部分代码
+            FCResponse<Integer> fcResponse = this.merchantClient.checkMerchantByMerchantNumber(systemLoginRequest.getUsername());
+            if (!fcResponse.getCode().equals(HttpFcStatus.DATASUCCESSGET.getCode())) {
+                return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), fcResponse.getMsg(), null);
+            }
+            // 判断商户是否注册
+            if (fcResponse.getData() == 0) {
+                // 未注册
+                return FCResponse.dataResponse(HttpFcStatus.DATAEMPTY.getCode(), HttpMsg.merchant.MERCHANT_NO_REGISTER.getMsg(), null);
+            }
+            // 根据商户号获取商户信息
+            FCResponse<MerchantResponse> merchantFcResponse = this.merchantClient.getMerchantByMerchantNumber(systemLoginRequest.getUsername());
+            if (!fcResponse.getCode().equals(HttpFcStatus.DATASUCCESSGET.getCode())) {
+                return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), fcResponse.getMsg(), null);
+            }
+            // 校验密码
+            // 比对密码
+            MerchantResponse merchantResponse = merchantFcResponse.getData();
+            if (!StringUtils.equals(merchantResponse.getPassword(), systemLoginRequest.getPassword())) {
+                return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), HttpMsg.merchant.MERCHANT_MESSAGE_ERROR.getMsg(), null);
+            }
+            // 执行登录
+            MerchantInfo merchantInfo = new MerchantInfo();
+            merchantInfo.setId(merchantResponse.getId());
+            merchantInfo.setPhone(merchantResponse.getPhone());
+            LoginInfoData loginInfoData = new LoginInfoData();
+            loginInfoData.setId(merchantInfo.getId());
+            loginInfoData.setPhone(merchantResponse.getPhone());
+            // 设置为商户标识
+            loginInfoData.setResources("merchant");
+            try {
+                String token = JwtUtils.generateToken(loginInfoData, this.jwtProperties.getPrivateKey(), this.jwtProperties.getExpire());
+                CookieUtils.setCookie(request, response, jwtProperties.getCookieName(), token, jwtProperties.getCookieMaxAge() * 60);
+                Map<String, Object> map = new HashMap<>();
+                map.put("token", token);
+                return FCResponse.dataResponse(HttpFcStatus.DATASUCCESSGET.getCode(), HttpMsg.merchant.MERCHANT_LOGIN_SUCCESS.getMsg(), map);
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new FCException("系统错误");
+            }
+```
+对上面代码进行讲解
