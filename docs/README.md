@@ -43,9 +43,9 @@ ElasticSearch（搜索引擎）、XXL-JOB（任务调度）等技术。
 ### App技术
 [Uniapp](https://uniapp.dcloud.net.cn/)
 ## CodeWorld-Cloud-Shop技术篇
-[Redis的安装和使用](environmental-installation/environmental-installation-redis.md)
-[RabbitMQ的安装和使用](environmental-installation/environmental-installation-rabbitmq.md)
-[ElasticSearch的安装和使用](environmental-installation/environmental-installation-elasticsearch.md)
+* [Redis的安装和使用](environmental-installation/environmental-installation-redis.md)
+* [RabbitMQ的安装和使用](environmental-installation/environmental-installation-rabbitmq.md)
+* [ElasticSearch的安装和使用](environmental-installation/environmental-installation-elasticsearch.md)
 
 
 
