@@ -48,7 +48,6 @@ vi /etc/security/limits.d/20-nproc.conf
 root       soft            nproc     unlimited
 ```
 - max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
-/etc/sysctl.conf文件末尾添加 vm.max_map_count = 2621441
 ![配置文件](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075538370-1255355845.png)
 ```java
  vi  /etc/sysctl.conf
