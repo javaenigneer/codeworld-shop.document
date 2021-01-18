@@ -62,7 +62,7 @@ vm.max_map_count = 2621441
 // 执行命令立即生效
 sudo sysctl -p /etc/sysctl.conf//立即生效
 ```
-**以上三个是常见的三个错误 其余的请自行百度**
+以上三个是常见的三个错误 其余的请自行百度
 
 ```
 ulimit -a
@@ -87,7 +87,7 @@ ps -ef|grep elasticsearch
 ##### 浏览器请求
 
 ```text
-`http://192.168.88.133:9200/`
+http://192.168.88.133:9200/
 ```
 
 
@@ -96,13 +96,17 @@ ps -ef|grep elasticsearch
 
 ### 安装Kibana（可视化界面）
 #### 下载kibana
-wget https://artifacts.elastic.co/downloads/kibana/kibana-6.2.4-linux-x86_64.tar.gz
+`wget https://artifacts.elastic.co/downloads/kibana/kibana-6.2.4-linux-x86_64.tar.gz`
+
 #### 解压kibana
-tar -zxvf kibana-6.2.4-linux-x86_64.tar.gz
+`tar -zxvf kibana-6.2.4-linux-x86_64.tar.gz`
+
 #### 进入到kibana
-cd kibana-6.2.4
+`cd kibana-6.2.4`
+
 #### 修改配置文件
-vim config/kibana.yml
+`vim config/kibana.yml`
+
 ```java
 //放开注释,将默认配置改成如下：
 server.port: 5601
