@@ -64,6 +64,7 @@ redis.conf是Redis的配置文件，redis.conf在redis源码目录
 redis启动的默认端口是6379
 ```
 **注意的是，我们看看我们的防火墙是否开启，如果开启我们就需要开启我们的端口6379**
+[防火墙的使用](../firewall/firewall-use.md)
 ### Redis的基本使用(相信你已经会使用SpringBoot)
 #### 引入依赖
 ```java

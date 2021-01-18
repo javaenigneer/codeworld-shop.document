@@ -11,4 +11,4 @@
 [后端项目地址](https://github.com/javaenigneer/codeworld-cloud-shop-api)
 [前端项目地址](https://github.com/javaenigneer/code-shop-system)
 [App端项目地址](https://github.com/javaenigneer/code-shop-app)
-[Get Started](#quick-start)
+[Get Started](/#)

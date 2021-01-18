@@ -59,6 +59,7 @@ service rabbitmq-server restart
 chkconfig rabbitmq-server on
 ```
 **注意防火墙端口要打开 15672，5672**
+[防火墙的使用](../firewall/firewall-use.md)
 ### RabbitMQ管理界面
 #### 主页预览
 ![主页预览](https://fcblog-1300450814.cos.ap-chengdu.myqcloud.com/2020/03/04/72931583282706452.png)
