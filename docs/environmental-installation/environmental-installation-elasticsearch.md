@@ -3,6 +3,7 @@
 #### 安装Java环境（这个我相信你已经安装好了）
 可以参考
 [安装Java环境](https://www.cnblogs.com/renxixao/p/11469754.html)
+
 #### 安装ElasticSearch-6.2.4
 ##### 安装并解压文件
 ```java
@@ -16,6 +17,7 @@ sh /usr/local/elasticsearch-6.2.4/bin/elasticsearch
 <br/>
 首先我们先把防火墙关闭
 [防火墙使用](../firewall/firewall-use.md)
+
 ##### 执行以下命令
 ```java
 useradd es // 创建es用户
@@ -45,13 +47,11 @@ vi /etc/security/limits.d/20-nproc.conf
 // 修改以下内容
  *            soft          nproc     4096
  *            hard          nproc     4096
-root       soft             nproc     unlimited
+root          soft             nproc     unlimited
 ```
 - max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
-<br/>
-![配置文件](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075538370-1255355845.png)
 ```java
- vi  /etc/sysctl.conf
+vi  /etc/sysctl.conf
 // 添加以下内容
 vm.max_map_count = 2621441
 // 执行命令立即生效
