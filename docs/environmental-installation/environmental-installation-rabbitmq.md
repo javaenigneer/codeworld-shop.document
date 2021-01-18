@@ -1,4 +1,4 @@
-## RabbitMQ的安装和使用
+## RabbitMQ的安装和使用 {docsify-ignore}
 ### RabbitMQ的安装（我们也是在Linux下安装RabbitMQ）
 #### 创建文件夹
 ```java
