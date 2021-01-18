@@ -4,4 +4,4 @@
  环境安装
  * [CodeWorld-Cloud-Shop Redis的安装和使用](environmental-installation/environmental-installation-redis.md)
  * [CodeWorld-Cloud-Shop RabbitMQ的安装和使用](environmental-installation/environmental-installation-rabbitmq.md)
- * [CodeWorld-Cloud-Shop ElasticSearch的安装和使用](environmental-installation/environmental-installation-elasticSearch.md)
+ * [CodeWorld-Cloud-Shop ElasticSearch的安装和使用](environmental-installation/environmental-installation-elasticsearch.md)
