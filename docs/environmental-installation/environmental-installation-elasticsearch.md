@@ -68,13 +68,13 @@ sudo sysctl -p /etc/sysctl.conf//立即生效
 ulimit -a
 ```
 
-![查看](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075718357-822126504.png)
+![查看](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/elasticsearch/ulimit-a.png)
 
 ```text
 发现当前最大线程数还是为3818  别慌 重启下虚拟机 重启后才能生效
 ```
 
-![线程数](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075802394-864146803.png)
+![线程数](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/elasticsearch/ulimit-a%E7%BB%93%E6%9E%9C.png)
 
 ```java
 // 接着切换到es用户启动
@@ -83,18 +83,17 @@ sh/usr/local/elasticsearch-6.2.4/bin/elasticsearch -d     //加-d就是启动后
 ps -ef|grep elasticsearch
 验证下服务是否正常运行 curl  http://192.168.88.133:9200
 ```
-![结果](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075931444-39877083.png)
+![结果](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/elasticsearch/curl.png)
 ##### 浏览器请求
 
 ```text
 http://192.168.88.133:9200/
 ```
 
-
-
-##### ![结果](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905081014352-1463601726.png)
+![结果](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/elasticsearch/result.png)
 
 ### 安装Kibana（可视化界面）
+
 #### 下载kibana
 `wget https://artifacts.elastic.co/downloads/kibana/kibana-6.2.4-linux-x86_64.tar.gz`
 
