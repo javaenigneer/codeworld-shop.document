@@ -117,4 +117,4 @@ Queues：队列，即消息队列，消息存放在队列中，等待消费，�
 * [RabbitMQ实践应用二-消峰限流](https://feicheng.xyz/2020/04/19/RabbitMQ%E5%AE%9E%E8%B7%B5%E4%BA%8C-%E6%B6%88%E5%B3%B0%E9%99%90%E6%B5%81/)
 * [RabbitMQ实践应用二-消峰限流补充](https://feicheng.xyz/2020/04/19/RabbitMQ%E5%AE%9E%E8%B7%B5%E4%BA%8C-%E6%B6%88%E5%B3%B0%E9%99%90%E6%B5%81%E8%A1%A5%E5%85%85/)
 ### 欢迎加入QQ群(964285437)
-[QQ群](https://fcblog-1300450814.cos.ap-chengdu.myqcloud.com/2020/hexoblog/temp_qrcode_share_964285437.png)
+![QQ群](https://fcblog-1300450814.cos.ap-chengdu.myqcloud.com/2020/hexoblog/temp_qrcode_share_964285437.png)
