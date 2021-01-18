@@ -1,4 +1,4 @@
-### CodeWorld-Cloud-Shop项目功能概览
+### CodeWorld-Cloud-Shop项目功能概览 {docsify-ignore}
 
 #### CodeWorld-Cloud-Shop项目简介
 CodeWorld-Cloud-shop是一套比较完整的商城系统，采用的是目前流行的框架技术完成(还在继续开发中)
