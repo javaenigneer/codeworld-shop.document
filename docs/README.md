@@ -42,11 +42,12 @@ ElasticSearch（搜索引擎）、XXL-JOB（任务调度）等技术。
 
 ### App技术
 [Uniapp](https://uniapp.dcloud.net.cn/)
-## CodeWorld-Cloud-Shop技术篇
+## CodeWorld-Cloud-Shop 环境安装
 * [Redis的安装和使用](environmental-installation/environmental-installation-redis.md)
 * [RabbitMQ的安装和使用](environmental-installation/environmental-installation-rabbitmq.md)
 * [ElasticSearch的安装和使用](environmental-installation/environmental-installation-elasticsearch.md)
-
+## CodeWorld-Cloud-Shop 技术支持
+* [CodeWorld-Cloud-Shop 项目基本骨架](technology/basic-skeleton.md)
 
 
 ### 欢迎加入QQ群(964285437)
