@@ -47,7 +47,7 @@ CentOS 上通过 firewall 来进行防火墙的工作。
 `firewall-cmd --panic-off`
 * 查看是否拒绝
 `firewall-cmd --query-panic`
-###那怎么开启一个端口呢
+### 那怎么开启一个端口呢
 添加
 注1：--permanent永久生效，没有此参数重启后失效
 注2：增加了要用 firewall-cmd --reload，才会生效
