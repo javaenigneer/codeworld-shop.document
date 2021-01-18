@@ -12,7 +12,7 @@ tar -zxvf elasticsearch-6.2.4.tar.gz -C /usr/local/
 sh /usr/local/elasticsearch-6.2.4/bin/elasticsearch
 ```
 使用这个命令发现报错了
-![启动ElasticSearch报错](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905074750373-978938652.png)
+![启动ElasticSearch报错](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/elasticsearch/%E6%8A%A5%E9%94%99.png)
 **从5.0开始 elasticsearch 安全级别提高了 不允许采用root帐号启动 所以我们要添加一个用户用来启动 elasticsearch**
 <br/>
 首先我们先把防火墙关闭
@@ -32,6 +32,7 @@ vi /usr/local/elasticsearch-6.2.4/config/elasticsearch.yml
 不过这样执行后一样会报错，那么就按照以下执行吧
 ##### 修改报错信息
 **注意：以下操作都要切换到root下执行**
+
 - max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]
 ```java
 // 修改/etc/security/limits.conf文件 在文件末尾添加如下
