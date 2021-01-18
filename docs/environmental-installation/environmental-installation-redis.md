@@ -202,3 +202,5 @@ try {
         }
 ```
 Redis🉐️简单使用就到这里。想继续了解其中的数据类型需要你自己去研究，亲自操作印象更深刻，是不？
+### 欢迎加入QQ群(964285437)
+[QQ群](https://fcblog-1300450814.cos.ap-chengdu.myqcloud.com/2020/hexoblog/temp_qrcode_share_964285437.png)
