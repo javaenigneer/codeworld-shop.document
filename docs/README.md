@@ -7,7 +7,7 @@ CodeWorld-Cloud-Shop是一套比较完整的商城系统，采用的是目前流
 ElasticSearch（搜索引擎）、XXL-JOB（任务调度）等技术。
 前台商城采用uniapp模板，有商城首页、广告轮播图、分类展示、商品搜索、商品展示、商品规格选择、购物车、订单查询、订单流程等模块。
 后台系统采用vue，使用多商户登录平台、有系统管理、商品管理、商户管理、订单管理、营销管理等模块
-## CodeWorld-Cloud-Shop项目地址{docsify-ignore}
+## CodeWorld-Cloud-Shop项目地址 {docsify-ignore}
 * [后端项目](https://github.com/javaenigneer/codeworld-cloud-shop-api)
 * [前端项目](https://github.com/javaenigneer/code-shop-system)
 * [App端项目](https://github.com/javaenigneer/code-shop-app)
@@ -42,12 +42,15 @@ ElasticSearch（搜索引擎）、XXL-JOB（任务调度）等技术。
 
 ### App技术
 [Uniapp](https://uniapp.dcloud.net.cn/)
+
 ## CodeWorld-Cloud-Shop 环境安装
 * [Redis的安装和使用](environmental-installation/environmental-installation-redis.md)
 * [RabbitMQ的安装和使用](environmental-installation/environmental-installation-rabbitmq.md)
 * [ElasticSearch的安装和使用](environmental-installation/environmental-installation-elasticsearch.md)
+
 ## CodeWorld-Cloud-Shop 技术支持
 * [CodeWorld-Cloud-Shop 项目基本骨架](technology/basic-skeleton.md)
+
 ## CodeWorld-Cloud-Shop 数据库
 * [CodeWorld-Cloud-Shop 数据库基本概览](database/basic-overview.md)
 

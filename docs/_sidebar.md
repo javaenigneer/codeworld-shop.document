@@ -10,4 +10,4 @@
  ### 技术支持
  * [CodeWorld-Cloud-Shop 项目基本骨架](technology/basic-skeleton.md)
  ### 数据库
- * [CodeWorld-Cloud-Shop 数据库基本概览]
+ * [CodeWorld-Cloud-Shop 数据库基本概览](database/basic-overview.md)
