@@ -11,14 +11,15 @@ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.ta
 tar -zxvf elasticsearch-6.2.4.tar.gz -C /usr/local/
 sh /usr/local/elasticsearch-6.2.4/bin/elasticsearch
 ```
-使用这个命令发现报错了
+启动后发现报错了
+
 ![启动ElasticSearch报错](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/elasticsearch/%E6%8A%A5%E9%94%99.png)
-**从5.0开始 elasticsearch 安全级别提高了 不允许采用root帐号启动 所以我们要添加一个用户用来启动 elasticsearch**
-<br/>
-首先我们先把防火墙关闭
+
+**从5.0开始 elasticsearch 安全级别提高了 不允许采用root帐号启动 所以我们要添加一个用户用来启动 elasticsearch**首先我们先把防火墙关闭
 [防火墙使用](../firewall/firewall-use.md)
 
 ##### 执行以下命令
+
 ```java
 useradd es // 创建es用户
 chown -R es:es /usr/local/elasticsearch-6.2.4///把目录权限赋予给es用户
@@ -26,10 +27,13 @@ su es//切换至es用户
 vi /usr/local/elasticsearch-6.2.4/config/elasticsearch.yml
 ```
 ##### 修改配置文件
+
 把 host改为本机地址
 ![配置文件](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/elasticsearch/ElasticSearch.png)
+
 **记得把前面注释#删掉 再执行 sh /usr/local/elasticsearch-6.2.4/bin/elasticsearch**
 不过这样执行后一样会报错，那么就按照以下执行吧
+
 ##### 修改报错信息
 **注意：以下操作都要切换到root下执行**
 
@@ -69,8 +73,6 @@ ulimit -a
 ```text
 发现当前最大线程数还是为3818  别慌 重启下虚拟机 重启后才能生效
 ```
-
-
 
 ![线程数](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075802394-864146803.png)
 
