@@ -58,16 +58,23 @@ vm.max_map_count = 2621441
 sudo sysctl -p /etc/sysctl.conf//立即生效
 ```
 **以上三个是常见的三个错误 其余的请自行百度**
-`ulimit -a`
-<br/>
+
+```
+ulimit -a
+```
+
 ![查看](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075718357-822126504.png)
-<br/>
+
+```text
 发现当前最大线程数还是为3818  别慌 重启下虚拟机 重启后才能生效
-<br/>
+```
+
+
+
 ![线程数](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075802394-864146803.png)
-<br/>
-接着切换到es用户启动
+
 ```java
+// 接着切换到es用户启动
 su es
 sh/usr/local/elasticsearch-6.2.4/bin/elasticsearch -d     //加-d就是启动后台进程
 ps -ef|grep elasticsearch
@@ -75,9 +82,15 @@ ps -ef|grep elasticsearch
 ```
 ![结果](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075931444-39877083.png)
 ##### 浏览器请求
+
+```text
 `http://192.168.88.133:9200/`
-<br/>
-![结果](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905081014352-1463601726.png)
+```
+
+
+
+##### ![结果](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905081014352-1463601726.png)
+
 ### 安装Kibana（可视化界面）
 #### 下载kibana
 wget https://artifacts.elastic.co/downloads/kibana/kibana-6.2.4-linux-x86_64.tar.gz
