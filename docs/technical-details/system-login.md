@@ -254,7 +254,7 @@ id、phone ---> token
                 String token = JwtUtils.generateToken(loginInfoData, this.jwtProperties.getPrivateKey(), this.jwtProperties.getExpire());
                 CookieUtils.setCookie(request, response, jwtProperties.getCookieName(), token, jwtProperties.getCookieMaxAge() * 60);
                 Map<String, Object> map = new HashMap<>();
-                map.put("token", token);
+                map.put ("token", token);
                 return FCResponse.dataResponse(HttpFcStatus.DATASUCCESSGET.getCode(), HttpMsg.merchant.MERCHANT_LOGIN_SUCCESS.getMsg(), map);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -262,3 +262,74 @@ id、phone ---> token
             }
 ```
 对上面代码进行讲解
+```java
+这里我们是用了openFeign远程调用（后面讲解）
+1.FCResponse<Integer> fcResponse = this.merchantClient.checkMerchantByMerchantNumber(systemLoginRequest.getUsername());
+通过商户号判断商户是否注册，若已注册，则返回20000,并且data不为0
+2.FCResponse<MerchantResponse> merchantFcResponse = this.merchantClient.getMerchantByMerchantNumber(systemLoginRequest.getUsername());
+通过商户号查询商户信息，同样的，请求成功返回20000，并且data不为空
+3.校验密码
+4.校验通过，设置登录信息LoginInfoData
+5.调用生成token的工具类（上面我们已经描述）
+6.返回一个Token信息
+7.将其设置到cookie中，并设置名字为token，并设置失效时间
+```
+在这里我们还要用到这个JwtProperties类
+```java
+/**
+ * ClassName JwtProperties
+ * Description 保存此授权中心微服务的公钥和私钥以及全局配置
+ * Author Lenovo
+ * Date 2020/12/23
+ * Version 1.0
+**/
+@Component
+@ConfigurationProperties(prefix = "codeworld.jwt")
+@Data
+public class JwtProperties {
+
+    private String secret; // 用于生存rsa公钥和私钥的密文,越复杂越好
+
+    private String pubKeyPath;// 公钥
+    private String priKeyPath;// 私钥
+
+    private int expire;// token过期时间
+
+    private PublicKey publicKey; // 公钥
+    private PrivateKey privateKey; // 私钥
+
+    private Integer cookieMaxAge;
+    private String cookieName;
+
+    private static final Logger logger = LoggerFactory.getLogger(JwtProperties.class);
+
+    /**
+     * 在构造函数后(即从配置文件获取到属性后)读取私钥、公钥
+     * 构造函数 -> 自动注入@Autowired -> @PostConstruct -> InitializingBean -> xml中配置的init-method="init"方法
+     */
+    @PostConstruct
+    public void init(){
+        try {
+            File pubKey = new File(pubKeyPath);
+            File priKey = new File(priKeyPath);
+            //若不存在公钥和私钥
+            if (!pubKey.exists() || !priKey.exists()) {
+                // 生成公钥和私钥
+                RsaUtils.generateKey(pubKeyPath, priKeyPath, secret);
+            }
+            // 从文件读取公钥和私钥
+            this.publicKey = RsaUtils.getPublicKey(pubKeyPath);
+            this.privateKey = RsaUtils.getPrivateKey(priKeyPath);
+        } catch (Exception e) {
+            logger.error("初始化公钥和私钥失败！", e);
+            throw new RuntimeException();
+        }
+    }
+}
+```
+```text
+使用@Component注解加入到组件中，那么我们就可以在类中注解使用@Autowired
+@ConfigurationProperties这个注解可以从我们的application.yml配置文件中获取信息,这里我们是以codeworld.jwt开头下的属性值
+并且名称要和配置文件中的属性名一致
+使用init()方法来初始化一个公钥和密钥
+```
