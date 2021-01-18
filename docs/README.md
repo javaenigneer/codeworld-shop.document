@@ -43,19 +43,24 @@ ElasticSearch（搜索引擎）、XXL-JOB（任务调度）等技术。
 #### App技术 {docsify-ignore}
 [Uniapp](https://uniapp.dcloud.net.cn/)
 
-### CodeWorld-Cloud-Shop 环境安装 {docsify-ignore}
+### CodeWorld-Cloud-Shop 开篇前提
+* [CodeWorld-Cloud-Shop项目介绍](preface/project-introduction.md)
+* [CodeWorld-Cloud-Shop学习知识点](preface/project-study.md)
+
+### CodeWorld-Cloud-Shop 环境安装 
 * [Redis的安装和使用](environmental-installation/environmental-installation-redis.md)
 * [RabbitMQ的安装和使用](environmental-installation/environmental-installation-rabbitmq.md)
 * [ElasticSearch的安装和使用](environmental-installation/environmental-installation-elasticsearch.md)
 
-### CodeWorld-Cloud-Shop 技术支持 {docsify-ignore}
+### CodeWorld-Cloud-Shop 技术支持 
 * [CodeWorld-Cloud-Shop 项目基本骨架](technology/basic-skeleton.md)
 
-### CodeWorld-Cloud-Shop 数据库 {docsify-ignore}
+### CodeWorld-Cloud-Shop 防火墙 
+### CodeWorld-Cloud-Shop 数据库 
 * [CodeWorld-Cloud-Shop 数据库基本概览](database/basic-overview.md)
 
 
-#### 欢迎加入QQ群(964285437) {docsify-ignore}
+#### 欢迎加入QQ群(964285437)
 ![QQ群](https://fcblog-1300450814.cos.ap-chengdu.myqcloud.com/2020/hexoblog/temp_qrcode_share_964285437.png)
 
 
