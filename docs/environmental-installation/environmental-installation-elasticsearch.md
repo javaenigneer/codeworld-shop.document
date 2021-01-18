@@ -13,6 +13,7 @@ sh /usr/local/elasticsearch-6.2.4/bin/elasticsearch
 使用这个命令发现报错了
 ![启动ElasticSearch报错](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905074750373-978938652.png)
 **从5.0开始 elasticsearch 安全级别提高了 不允许采用root帐号启动 所以我们要添加一个用户用来启动 elasticsearch**
+<br/>
 首先我们先把防火墙关闭
 [防火墙使用](../firewall/firewall-use.md)
 ##### 执行以下命令
@@ -24,30 +25,30 @@ vi /usr/local/elasticsearch-6.2.4/config/elasticsearch.yml
 ```
 ##### 修改配置文件
 把 host改为本机地址
-![配置文件](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075129352-185443973.png)
+![配置文件](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/elasticsearch/ElasticSearch.png)
 **记得把前面注释#删掉 再执行 sh /usr/local/elasticsearch-6.2.4/bin/elasticsearch**
 不过这样执行后一样会报错，那么就按照以下执行吧
 ##### 修改报错信息
 **注意：以下操作都要切换到root下执行**
 - max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]
-修改/etc/security/limits.conf文件 在文件末尾添加如下
 ```java
+// 修改/etc/security/limits.conf文件 在文件末尾添加如下
 su root
 vi /etc/security/limits.conf
 // 添加以下内容
-*       hard    nofile           65536
-*       soft     nofile           65536
+ * hard    nofile           65536
+ * soft    nofile           65536
 ```
 - max number of threads [3818] for user [es] is too low, increase to at least [4096]
 ```java
 vi /etc/security/limits.d/20-nproc.conf
-
 // 修改以下内容
-*            soft            nproc     4096
-*            hard          nproc     4096
-root       soft            nproc     unlimited
+ *            soft          nproc     4096
+ *            hard          nproc     4096
+root       soft             nproc     unlimited
 ```
 - max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+<br/>
 ![配置文件](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075538370-1255355845.png)
 ```java
  vi  /etc/sysctl.conf
@@ -58,9 +59,13 @@ sudo sysctl -p /etc/sysctl.conf//立即生效
 ```
 **以上三个是常见的三个错误 其余的请自行百度**
 `ulimit -a`
+<br/>
 ![查看](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075718357-822126504.png)
+<br/>
 发现当前最大线程数还是为3818  别慌 重启下虚拟机 重启后才能生效
+<br/>
 ![线程数](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075802394-864146803.png)
+<br/>
 接着切换到es用户启动
 ```java
 su es
@@ -71,6 +76,7 @@ ps -ef|grep elasticsearch
 ![结果](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905075931444-39877083.png)
 ##### 浏览器请求
 `http://192.168.88.133:9200/`
+<br/>
 ![结果](https://img2018.cnblogs.com/blog/1312158/201909/1312158-20190905081014352-1463601726.png)
 ### 安装Kibana（可视化界面）
 #### 下载kibana
@@ -92,6 +98,7 @@ kibana.index: ".kibana"
 ```java
 bin/kibana
 ```
+![kibana](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/kibana/kibana.png)
 ### ElasticSearch的简单使用（根据商品id查询商品）
 #### 引入Pom文件
 ```java
