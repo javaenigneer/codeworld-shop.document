@@ -107,13 +107,13 @@ Queues：队列，即消息队列，消息存放在队列中，等待消费，�
 ### RabbitMQ基本使用
 这里我就直接上实战教程
 有兴趣学习的可以去我的博客学习
-[RabbitMQ基本使用一-基本介绍](https://feicheng.xyz/2020/04/05/RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%80(%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D)/)
-[RabbitMQ基本使用二-简单队列](https://feicheng.xyz/2020/04/06/RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%BA%8C-%E7%AE%80%E5%8D%95%E9%98%9F%E5%88%97/)
-[RabbitMQ基本使用三-工作队列](https://feicheng.xyz/2020/04/07/RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%89-%E5%B7%A5%E4%BD%9C%E9%98%9F%E5%88%97/)
-[RabbitMQ基本使用四-发布/订阅模式](https://feicheng.xyz/2020/04/11/RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%9B%9B-%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E9%98%9F%E5%88%97/)
-[RabbitMQ基本使用五-路由模式](https://feicheng.xyz/2020/04/12/RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%BA%94-%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/)
-[RabbitMQ基本使用六-主体模式](https://feicheng.xyz/2020/04/14/RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%85%AD-%E4%B8%BB%E9%A2%98%E6%A8%A1%E5%BC%8F/)
-[RabbitMQ实践应用一](https://feicheng.xyz/2020/04/14/RabbitMQ%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8%E4%B8%80/)
-[RabbitMQ实践应用二-消峰限流](https://feicheng.xyz/2020/04/19/RabbitMQ%E5%AE%9E%E8%B7%B5%E4%BA%8C-%E6%B6%88%E5%B3%B0%E9%99%90%E6%B5%81/)
-[RabbitMQ实践应用二-消峰限流补充](https://feicheng.xyz/2020/04/19/RabbitMQ%E5%AE%9E%E8%B7%B5%E4%BA%8C-%E6%B6%88%E5%B3%B0%E9%99%90%E6%B5%81%E8%A1%A5%E5%85%85/)
+* [RabbitMQ基本使用一-基本介绍](https://feicheng.xyz/2020/04/05/RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%80(%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D)/)
+* [RabbitMQ基本使用二-简单队列](https://feicheng.xyz/2020/04/06/RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%BA%8C-%E7%AE%80%E5%8D%95%E9%98%9F%E5%88%97/)
+* [RabbitMQ基本使用三-工作队列](https://feicheng.xyz/2020/04/07/RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%89-%E5%B7%A5%E4%BD%9C%E9%98%9F%E5%88%97/)
+* [RabbitMQ基本使用四-发布/订阅模式](https://feicheng.xyz/2020/04/11/RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%9B%9B-%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E9%98%9F%E5%88%97/)
+* [RabbitMQ基本使用五-路由模式](https://feicheng.xyz/2020/04/12/RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%BA%94-%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/)
+* [RabbitMQ基本使用六-主体模式](https://feicheng.xyz/2020/04/14/RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%85%AD-%E4%B8%BB%E9%A2%98%E6%A8%A1%E5%BC%8F/)
+* [RabbitMQ实践应用一](https://feicheng.xyz/2020/04/14/RabbitMQ%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8%E4%B8%80/)
+* [RabbitMQ实践应用二-消峰限流](https://feicheng.xyz/2020/04/19/RabbitMQ%E5%AE%9E%E8%B7%B5%E4%BA%8C-%E6%B6%88%E5%B3%B0%E9%99%90%E6%B5%81/)
+* [RabbitMQ实践应用二-消峰限流补充](https://feicheng.xyz/2020/04/19/RabbitMQ%E5%AE%9E%E8%B7%B5%E4%BA%8C-%E6%B6%88%E5%B3%B0%E9%99%90%E6%B5%81%E8%A1%A5%E5%85%85/)
 
