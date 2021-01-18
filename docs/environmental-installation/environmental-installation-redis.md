@@ -26,29 +26,29 @@ Redis一般我们都是在服务器上的，本地很少使用，那么我们就
 ```java
 Redis是C语言开发，建议在Linux上运行，本教程使用Centos7作为安装环境。
 安装redis需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：
-`yum install gcc-c++`
+yum install gcc-c++
 - 版本说明
  本教程使用Redis3.0版本。3.0版本主要增加了集群功能
 - 源码下载
 从官网下载
-`http://download.redis.io/releases/redis-3.0.0.tar.gz`
+http://download.redis.io/releases/redis-3.0.0.tar.gz
 将redis-3.0.0.tar.gz拷贝到 /usr/local
 - 解压源码
-`tar -zxvf redis-3.0.0.tar.gz `
+tar -zxvf redis-3.0.0.tar.gz 
 - 进入解压后的目录进行编译
-`cd /usr/local/redis-3.0.0`
-`make`
+cd /usr/local/redis-3.0.0
+make
 - 安装到指定目录,如 /usr/local/redis
-` cd /usr/local/redis-3.0.0 `
-`make PREFIX=/usr/local/redis install`
+cd /usr/local/redis-3.0.0
+make PREFIX=/usr/local/redis install
 - redis.conf
 redis.conf是Redis的配置文件，redis.conf在redis源码目录
 注意修改port作为redis进程的端口，port默认为6379
 - 拷贝配置文件到安装目录下
 进入源码目录，里面有一份配置文件 redis.conf，然后将其拷贝到安装路径下
-`cd /usr/local/redis`
-`makdir conf`
-`cp /usr/local/redis-3.0.0/redis.conf /usr/local/redis/bin`
+cd /usr/local/redis
+makdir conf
+cp /usr/local/redis-3.0.0/redis.conf /usr/local/redis/bin
 ```
 #### Redis的启动
 ##### 前端启动
@@ -59,8 +59,8 @@ redis.conf是Redis的配置文件，redis.conf在redis源码目录
 ```text
 修改redis.conf配置文件， daemonize yes 以后端模式启动
 执行如下命令启动Redis
-`cd /usr/local/redis`
-`./bin/redis-server ./redis.conf`
+cd /usr/local/redis
+./bin/redis-server ./redis.conf
 redis启动的默认端口是6379
 ```
 **注意的是，我们看看我们的防火墙是否开启，如果开启我们就需要开启我们的端口6379**
