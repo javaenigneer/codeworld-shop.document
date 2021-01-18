@@ -1,4 +1,4 @@
-## Redis的安装和使用 {docsify-ignore-all}
+## Redis的安装和使用 
 ### Redis介绍
 #### 什么是Redis
 Redis是用C语言开发的一个开源的高性能键值对（key-value）数据库。

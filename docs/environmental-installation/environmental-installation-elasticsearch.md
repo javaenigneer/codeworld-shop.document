@@ -1,4 +1,4 @@
-## ElasticSearch的安装和使用 {docsify-ignore-all}
+## ElasticSearch的安装和使用
 ### ElasticSearch安装（我们也是安装在Linux下的）
 #### 安装Java环境（这个我相信你已经安装好了）
 可以参考
