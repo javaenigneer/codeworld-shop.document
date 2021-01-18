@@ -1,4 +1,5 @@
-## 防火墙的使用(转载[防火墙的使用](https://how2j.cn/k/vmware/vmware-firewal/2002.html))
+## 防火墙的使用
+转载：[防火墙的使用](https://how2j.cn/k/vmware/vmware-firewal/2002.html)
 ### 防火墙的概念
 CentOS 上通过 firewall 来进行防火墙的工作。
 防火墙的工作简单说，就是运行那些端口开放给访问者用，哪些不开放~
