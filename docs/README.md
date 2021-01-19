@@ -57,6 +57,7 @@ ElasticSearch（搜索引擎）、XXL-JOB（任务调度）等技术。
 
 ### CodeWorld-Cloud-Shop 技术详解
 * [CodeWorld-Cloud-Shop 系统用户登录详解](technical-details/system-login.md)
+* [CodeWorld-Cloud-Shop 系统用户授权详解](technical-details/system-authorization.md)
 
 ### CodeWorld-Cloud-Shop 防火墙 
 * [CodeWorld-Cloud-Shop Firewall的安装和使用](firewall/firewall-use.md)

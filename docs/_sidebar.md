@@ -15,6 +15,7 @@
 
 ### 技术详解 {docsify-ignore}
  * [CodeWorld-Cloud-Shop 系统用户登录详解](technical-details/system-login.md)
+ * [CodeWorld-Cloud-Shop 系统用户授权详解](technical-details/system-authorization.md)
 
 ### 数据库 {docsify-ignore}
  * [CodeWorld-Cloud-Shop 数据库基本概览](database/basic-overview.md)
