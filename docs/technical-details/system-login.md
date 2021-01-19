@@ -92,7 +92,6 @@ spring:
         weight: 1
   main:
     allow-bean-definition-overriding: true # 允许覆盖重名的bean
-
 codeworld:  # jwt密钥信息
   jwt:
     secret: codeworld@Login(Auth}*^31)&codeworld% # 用于生存rsa公钥和私钥的密文,越复杂越好
@@ -102,8 +101,10 @@ codeworld:  # jwt密钥信息
     cookieMaxAge: 180000
     cookieName: token
 ```
+
 ### 首先来看我们common模块里的工具类
 > JwtConstans 主要是用来作为设置用户信息
+
 ```java
 public abstract class JwtConstans {
     public static final String JWT_KEY_ID = "id";
@@ -111,7 +112,9 @@ public abstract class JwtConstans {
     public static final String JWT_KEY_RESOURCES = "resources";
 }
 ```
+
 > JwtUtils 生成token信息，并从token中获取用户信息,使用公钥解析
+
 ```java
 /**
      * 私钥加密token
