@@ -9,5 +9,7 @@
    * [CodeWorld-Cloud-Shop Firewall的安装和使用](firewall/firewall-use.md)
 ### 技术支持 {docsify-ignore}
    * [CodeWorld-Cloud-Shop 项目基本骨架](technology/basic-skeleton.md)
+### 技术详解 {docsify-ignore}
+   * [CodeWorld-Cloud-Shop 系统用户登录详解](technical-details/system-login.md)
 ### 数据库 {docsify-ignore}
    * [CodeWorld-Cloud-Shop 数据库基本概览](database/basic-overview.md)

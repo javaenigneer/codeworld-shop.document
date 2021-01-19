@@ -215,6 +215,7 @@ id、phone ---> token
 ```
 这个没什么讲解
 ### ServiceImpl方法
+#### 我们先来看商户登录逻辑
 ```java
 // 首先来看我们的方法体，我们首先判断了一个是否是商户登录 2118
 // 那么这个2118是怎么来的呢，我们下后面章节会提到，这里就先不详细讲解
@@ -333,3 +334,94 @@ public class JwtProperties {
 并且名称要和配置文件中的属性名一致
 使用init()方法来初始化一个公钥和密钥
 ```
+#### 接着现在是系统用户登录逻辑
+```java
+        // 这里就是不是商户登录后台系统，系统管理员来登录系统
+        // 否则是系统管理员登录
+        // 根据用户名查询用户（这里也是通过远程调用来实现）
+        FCResponse<User> userFCResponse = this.userClient.getUserByName(systemLoginRequest.getUsername());
+        if (!userFCResponse.getCode().equals(HttpFcStatus.DATASUCCESSGET.getCode())) {
+            return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), userFCResponse.getMsg(), null);
+        }
+        User user = userFCResponse.getData();
+        if (user.getUserStatus().equals(StatusEnum.USER_DISABLE)) {
+            return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), HttpMsg.user.USER_DISABLE.getMsg(), null);
+        }
+        // 校验密码
+        if (!StringUtils.equals("123456", systemLoginRequest.getPassword())) {
+            return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), HttpMsg.user.USER_MESSAGE_ERROR.getMsg(), null);
+        }
+        // 执行登录
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(user.getUserId());
+        userInfo.setPhone(user.getUserPhone());
+        LoginInfoData loginInfoData = new LoginInfoData();
+        loginInfoData.setId(userInfo.getUserId());
+        loginInfoData.setPhone(userInfo.getPhone());
+        // 设置为系统标识
+        loginInfoData.setResources("system");
+        try {
+            String token = JwtUtils.generateToken(loginInfoData, this.jwtProperties.getPrivateKey(), this.jwtProperties.getExpire());
+            CookieUtils.setCookie(request, response, jwtProperties.getCookieName(), token, jwtProperties.getCookieMaxAge() * 60);
+            Map<String, Object> map = new HashMap<>();
+            map.put("token", token);
+            return FCResponse.dataResponse(HttpFcStatus.DATASUCCESSGET.getCode(), HttpMsg.user.USER_LOGIN_SUCCESS.getMsg(), map);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new FCException("系统错误");
+        }
+```
+```text
+其实上面的代码和商户登录的逻辑一样，也是密码校验通过进行信息保存
+不一样的是我们在保存登录标识时用户有不同的标识属性
+1.会员登录时，保存的标识是member（当然这里会员没有权限登录后台系统）
+2.商户登录时，保存的标识是merchant
+3.系统登录时，保存的标识是system
+```
+### 那么这么做的意思是啥呢
+我们通过保存不同的标识，来具体到操作哪一个数据库，当我们获取用户信息时，就根据标识来判断是哪一种用户
+### 实践操作
+#### 首先要启动我们的nacos（我是安装在window上的，推荐安装在Linux上）
+启动能看到这个界面就启动成功了
+![windows-start](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/nacos/windows-start.png)
+这样我们的nacos注册中心就准备好了，现在就只需要启动我们的项目就可以
+不过也不是全部都要启动，看需要什么就启动什么，这样电脑可能才跑的动
+如果你的电脑横nb，当我没说
+#### 启动项目里面的网关模块(codeworld-cloud-gateway)
+启动成功看见如下信息，这样就代表网关启动成功，并成功的注入到了nacos注册中心中
+![gateway-start](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/codeworld-cloud-gateway/gateway-start.png)
+#### 启动项目里面的认证中心模块(codeworld-cloud-auth)
+启动成功看见如下信息，这样就代表认证中心启动成功，并成功的注入到了nacos注册中心中
+![auth-start](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/codeworld-cloud-auth/auth-start.png)
+#### 启动项目里面的系统模块(codeworld-cloud-system)
+启动成功看见如下信息，这样就代表系统启动成功，并成功的注入到了nacos注册中心中
+![system-start](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/codeworld-cloud-system/system-start.png)
+#### 启动项目里面的商户模块(codeworld-cloud-merchant)
+启动成功看见如下信息，这样就代表商户启动成功，并成功的注入到了nacos注册中心中
+![merchant-start](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/codeworld-cloud-merchant/merchant-start.png)
+这样我们的项目就启动完成了
+接下来打开我们的postman接口调试工具
+#### 调用我们的系统登录接口（测试系统用户登录）
+![system-login-user](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/codeworld-cloud-auth/system-login-user.png)
+这里呢，使用的是json数据，username:1111,password:123456
+发送请求
+接着就会看见如下信息,就可以看见返回的token信息，那么这个token信息是用来交换用户信息的，这样就认证成功了
+![system-login-user-success](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/codeworld-cloud-auth/system-login-user-success.png)
+#### 调用我们的系统登录接口（测试商户登录登录）
+![system-login-merchant](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/codeworld-cloud-auth/system-login-merchant.png)
+这里呢，使用的是json数据，username:21181611095746339,password:123456
+发送请求
+接着就会看见如下信息,就可以看见返回的token信息，那么这个token信息是用来交换用户信息的，这样就认证成功了
+![system-login-merchant-success](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/codeworld-cloud-auth/system-login-merchant-success.png)
+
+```text
+那么到这里我们的用户认证信息就完成了，不过还没有给用户授权，那么为什么这样做登录呢？
+这样做的是我们我们可以通过不同的登录标识来对应回去用户的权限信息。
+比如：商户可以添加商品，而其他的管理员就不可以
+```
+那么怎么才能给用户授权呢？请看对应章节用户授权
+好了，本次的技术解析就到这里了？如果觉得不错的话，点亮一下小星星[codeworld-cloud-shop](https://github.com/javaenigneer/codeworld-cloud-shop-api)
+只看不点，不是好孩子哦！！！
+
+### 欢迎加入QQ群(964285437)
+![QQ群](https://fcblog-1300450814.cos.ap-chengdu.myqcloud.com/2020/hexoblog/temp_qrcode_share_964285437.png)
