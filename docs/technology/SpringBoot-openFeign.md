@@ -1,4 +1,4 @@
-## CodeWorld-Cloud-Shop openFeign技术---奶妈级教学 {docsif-ignore}
+## CodeWorld-Cloud-Shop openFeign技术---奶妈级教学 {docsify-ignore}
 > 本篇文章主要带领大家来了解openFeign的世界，进行奶妈级的教学
 
 ### 什么是openFeign
