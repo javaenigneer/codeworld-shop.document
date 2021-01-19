@@ -1,4 +1,4 @@
-## CodeWorld-Cloud-Shop 系统登录详解篇---手把手教学 {docsify-ignore}
+## CodeWorld-Cloud-Shop 系统登录详解篇---奶妈级教学 {docsify-ignore}
 > 本篇文章我们主要讲述我们在登录时怎么获取我们的权限信息，怎么实现登录认证
 
 相信在学习这篇文章时，你已经装好了全部的环境
@@ -422,7 +422,7 @@ public class JwtProperties {
 这样做的是我们我们可以通过不同的登录标识来对应回去用户的权限信息。
 比如：商户可以添加商品，而其他的管理员就不可以
 ```
-那么怎么才能给用户授权呢？请看对应章节用户授权
+那么怎么才能给用户授权呢？请看对应章节用户授权[CodeWorld-Cloud-Shop 系统授权详解篇](system-authorization.md)
 好了，本次的技术解析就到这里了？如果觉得不错的话，点亮一下小星星[codeworld-cloud-shop](https://github.com/javaenigneer/codeworld-cloud-shop-api)
 只看不点，不是好孩子哦！！！
 
