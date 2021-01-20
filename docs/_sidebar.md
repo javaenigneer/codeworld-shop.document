@@ -6,6 +6,7 @@
  * [CodeWorld-Cloud-Shop Redis的安装和使用](environmental-installation/environmental-installation-redis.md)
  * [CodeWorld-Cloud-Shop RabbitMQ的安装和使用](environmental-installation/environmental-installation-rabbitmq.md)
  * [CodeWorld-Cloud-Shop ElasticSearch的安装和使用](environmental-installation/environmental-installation-elasticsearch.md)
+ * [CodeWorld-Cloud-Shop windows下安装单机版nacos](environmental-installation/windows-installation-nacos.md)
  
 ### 防火墙 {docsify-ignore}
  * [CodeWorld-Cloud-Shop Firewall的安装和使用](firewall/firewall-use.md)

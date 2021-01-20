@@ -51,6 +51,7 @@ ElasticSearch（搜索引擎）、XXL-JOB（任务调度）等技术。
 * [Redis的安装和使用](environmental-installation/environmental-installation-redis.md)
 * [RabbitMQ的安装和使用](environmental-installation/environmental-installation-rabbitmq.md)
 * [ElasticSearch的安装和使用](environmental-installation/environmental-installation-elasticsearch.md)
+* [CodeWorld-Cloud-Shop windows下安装单机版nacos](environmental-installation/windows-installation-nacos.md)
 
 ### CodeWorld-Cloud-Shop 技术支持 
 * [CodeWorld-Cloud-Shop 项目基本骨架](technology/basic-skeleton.md)
