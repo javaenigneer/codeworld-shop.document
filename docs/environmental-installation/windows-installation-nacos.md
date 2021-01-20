@@ -26,7 +26,8 @@ db.password=root
 ![nacos-bin-start](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/nacos/nacos-bin-start.png)
 ### 启动成功
 ![windows-start](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/nacos/windows-start.png)
-### 地址栏输入http://localhost:8848/nacos
+### 地址栏输入
+`http://localhost:8848/nacos`
 ![nacos-login](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/nacos/nacos-login.png)
 用户名和密码都是默认的nacos和nacos
 ### 登录成功后
