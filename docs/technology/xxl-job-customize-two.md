@@ -553,7 +553,8 @@ public class UserTask {
 看见这个就是xxl加载成功啦
 #### 我们需要去创建一个执行器，名称是xxl-job-test
 这个就不用上图片了吧，去[CodeWorld-Cloud-Shop XXL-JOB入门详解篇---奶妈级教学](/technology/xxl-job-get-started.md)
-#### 调用接口:http://localhost:10001/codeworld-xxl/add-job
+#### 调用接口
+`http://localhost:10001/codeworld-xxl/add-job`
 ![add-job-customize](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/xxl-job/add-job-customize.png)
 出现这个说明接口调用成功啦
 再来看我们的控制台
