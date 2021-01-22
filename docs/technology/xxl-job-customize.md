@@ -1,6 +1,6 @@
 ## CodeWorld-Cloud-Shop XXL-JOB动态创建任务详解篇1---奶妈级教学
 ### 前言
-我们在[CodeWorld-Cloud-Shop XXL-JOB入门详解篇](../technology/xxl-job-get-started.md)介绍了XXL-JOB的基本使用
+我们在[CodeWorld-Cloud-Shop XXL-JOB入门详解篇](technology/xxl-job-get-started.md)介绍了XXL-JOB的基本使用
 如果你还没有进行入门的同学，就先来一段奶妈级教学吧，然后再进行下一阶段
 ### 问题探索
 我们虽然在入门级教学中演示了XXL-JOB任务调度的基本使用，我们也体会到了XXL-JOB的优越性以及页面操作的简单性
