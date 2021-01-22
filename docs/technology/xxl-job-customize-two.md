@@ -1,6 +1,6 @@
 ## CodeWorld-Cloud-Shop XXL-JOB动态创建任务详解篇2---奶妈级教学
 ### 前言
-我们在上一节[CodeWorld-Cloud-Shop XXL-JOB动态创建任务详解篇1---奶妈级教学](/technology/xxl-job-customize-two.md)讲解了XXL-JOB我们在创建任务的缺陷
+我们在上一节[CodeWorld-Cloud-Shop XXL-JOB动态创建任务详解篇1---奶妈级教学](/technology/xxl-job-customize.md)讲解了XXL-JOB我们在创建任务的缺陷
 那么这一节我们呢将继续实现怎么来动态创建任务
 
 ### 修改xxl-job-admin的接口
