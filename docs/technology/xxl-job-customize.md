@@ -111,7 +111,7 @@ public @interface PermissionLimit {
 1.在xxl-job-admin项目的原有基础上开发新的一个接口，加上 `PermissionLimit`并设置为false
 2.使用RestTemplate进行远程调用，实现任务的添加
 ```
-那么我们将在下一节继续讲解[CodeWorld-Cloud-Shop XXL-JOB动态创建任务详解篇2---奶妈级教学](../technology/xxl-job-customize-two.md)
+那么我们将在下一节继续讲解[CodeWorld-Cloud-Shop XXL-JOB动态创建任务详解篇2---奶妈级教学](/technology/xxl-job-customize-two.md)
 好了，本次的技术解析就到这里了？如果觉得不错的话，点亮一下小星星[codeworld-cloud-shop](https://github.com/javaenigneer/codeworld-cloud-shop-api)
 只看不点，不是好孩子哦！！！
 ### 欢迎加入QQ群(964285437)

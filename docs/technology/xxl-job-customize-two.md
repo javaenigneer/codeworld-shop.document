@@ -1,6 +1,6 @@
 ## CodeWorld-Cloud-Shop XXL-JOB动态创建任务详解篇2---奶妈级教学
 ### 前言
-我们在上一节[CodeWorld-Cloud-Shop XXL-JOB动态创建任务详解篇1---奶妈级教学](../technology/xxl-job-customize-two.md)讲解了XXL-JOB我们在创建任务的缺陷
+我们在上一节[CodeWorld-Cloud-Shop XXL-JOB动态创建任务详解篇1---奶妈级教学](/technology/xxl-job-customize-two.md)讲解了XXL-JOB我们在创建任务的缺陷
 那么这一节我们呢将继续实现怎么来动态创建任务
 
 ### 修改xxl-job-admin的接口
@@ -552,7 +552,7 @@ public class UserTask {
 ![xxl-job-customize](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/xxl-job/xxl-job-customize.png)
 看见这个就是xxl加载成功啦
 #### 我们需要去创建一个执行器，名称是xxl-job-test
-这个就不用上图片了吧，去[CodeWorld-Cloud-Shop XXL-JOB入门详解篇---奶妈级教学](../technology/xxl-job-get-started.md)
+这个就不用上图片了吧，去[CodeWorld-Cloud-Shop XXL-JOB入门详解篇---奶妈级教学](/technology/xxl-job-get-started.md)
 #### 调用接口:http://localhost:10001/codeworld-xxl/add-job
 ![add-job-customize](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/xxl-job/add-job-customize.png)
 出现这个说明接口调用成功啦
@@ -564,7 +564,7 @@ public class UserTask {
 
 哇哦，看来执行成功了，那么我们就这样成功了。
 那么轮播图的问题就解决了，动态创建任务实现实现了轮播图的上线和下线
-[代码地址]()
+[代码地址](https://github.com/javaenigneer/SpringBoot-demo)
 
 好了，本次的技术解析就到这里了？如果觉得不错的话，点亮一下小星星[codeworld-cloud-shop](https://github.com/javaenigneer/codeworld-cloud-shop-api)
 只看不点，不是好孩子哦！！
