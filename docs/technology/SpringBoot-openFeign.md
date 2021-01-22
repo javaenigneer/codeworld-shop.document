@@ -422,7 +422,7 @@ public interface RoleClient {
 这样我们的服务就不会报错了，这样就会提示我们请求超时，请求超时
 
 那么这样就算我们的服务宕机了也不会影响
-
+[代码地址](https://github.com/javaenigneer/SpringBoot-demo)
 好了，本次的技术解析就到这里了？如果觉得不错的话，点亮一下小星星[codeworld-cloud-shop](https://github.com/javaenigneer/codeworld-cloud-shop-api)
 只看不点，不是好孩子哦！！
 
