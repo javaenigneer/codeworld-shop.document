@@ -1,6 +1,6 @@
 ## CodeWorld-Cloud-Shop XXL-JOB动态创建任务详解篇1---奶妈级教学
 ### 前言
-我们在[CodeWorld-Cloud-Shop XXL-JOB入门详解篇]介绍了XXL-JOB的基本使用
+我们在[CodeWorld-Cloud-Shop XXL-JOB入门详解篇](../technology/xxl-job-get-started.md)介绍了XXL-JOB的基本使用
 如果你还没有进行入门的同学，就先来一段奶妈级教学吧，然后再进行下一阶段
 ### 问题探索
 我们虽然在入门级教学中演示了XXL-JOB任务调度的基本使用，我们也体会到了XXL-JOB的优越性以及页面操作的简单性
@@ -111,7 +111,7 @@ public @interface PermissionLimit {
 1.在xxl-job-admin项目的原有基础上开发新的一个接口，加上 `PermissionLimit`并设置为false
 2.使用RestTemplate进行远程调用，实现任务的添加
 ```
-那么我们将在下一节继续讲解[CodeWorld-Cloud-Shop XXL-JOB动态创建任务详解篇2---奶妈级教学](xxl-job-customize-two.md)
+那么我们将在下一节继续讲解[CodeWorld-Cloud-Shop XXL-JOB动态创建任务详解篇2---奶妈级教学](../technology/xxl-job-customize-two.md)
 好了，本次的技术解析就到这里了？如果觉得不错的话，点亮一下小星星[codeworld-cloud-shop](https://github.com/javaenigneer/codeworld-cloud-shop-api)
 只看不点，不是好孩子哦！！！
 ### 欢迎加入QQ群(964285437)
