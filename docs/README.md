@@ -56,6 +56,7 @@ ElasticSearch（搜索引擎）、XXL-JOB（任务调度）等技术。
 ### CodeWorld-Cloud-Shop 技术支持 
 * [CodeWorld-Cloud-Shop 项目基本骨架](technology/basic-skeleton.md)
 * [CodeWorld-Cloud-Shop openFeign入门](technology/SpringBoot-openFeign.md)
+* [CodeWorld-Cloud-Shop XXL-JOB入门](technology/xxl-job-get-started.md)
 
 ### CodeWorld-Cloud-Shop 技术详解
 * [CodeWorld-Cloud-Shop 系统用户登录详解](technical-details/system-login.md)
