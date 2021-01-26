@@ -23,6 +23,7 @@
  * [CodeWorld-Cloud-Shop 系统用户授权详解](technical-details/system-authorization.md)
  * [CodeWorld-Cloud-Shop 图片上传详解](technical-details/upload-service-image.md)
  * [CodeWorld-Cloud-Shop 短信发送详解](technical-details/sms-service-send-message.md)
+ * [CodeWorld-Cloud-Shop 订单过期处理详解](technical-details/order-redis-expire-listener.md)
 
 ### 数据库 {docsify-ignore}
  * [CodeWorld-Cloud-Shop 数据库基本概览](database/basic-overview.md)
