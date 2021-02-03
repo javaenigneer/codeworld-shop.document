@@ -1,4 +1,4 @@
-## CodeWorld-Cloud-Shop 系统登录详解篇---奶妈级教学 {docsify-ignore}
+## CodeWorld-Cloud-Shop 系统后台登录详解篇---奶妈级教学 {docsify-ignore}
 > 本篇文章我们主要讲述我们在登录时怎么获取我们的权限信息，怎么实现登录认证
 
 相信在学习这篇文章时，你已经装好了全部的环境
@@ -188,14 +188,14 @@ id、phone ---> token
 
 ### 我们直接从我们的Controller进入
 ```java
-    @PostMapping("system-login")
-    @ApiOperation("系统后台登录")
-    @PassToken
-    public FCResponse<Map<String, Object>> systemLogin(@RequestBody @Valid SystemLoginRequest systemLoginRequest,
-                                                       HttpServletRequest request,
-                                                       HttpServletResponse response){
-        return this.authService.systemLogin(systemLoginRequest,request,response);
-    }
+   @PostMapping("/web/system/system-login")
+       @ApiOperation("系统后台登录web端")
+       @PassToken
+       public FCResponse<Map<String, Object>> systemLogin(@RequestBody @Valid SystemLoginRequest systemLoginRequest,
+                                                          HttpServletRequest request,
+                                                          HttpServletResponse response){
+           return this.authService.systemLogin(systemLoginRequest,request,response);
+       }
 ```
 ```text
 相信这里面的注解应该都知道什么意思吧（有部分注解会单独讲解）
@@ -218,65 +218,48 @@ id、phone ---> token
 ```
 这个没什么讲解
 ### ServiceImpl方法
-#### 我们先来看商户登录逻辑
 ```java
-// 首先来看我们的方法体，我们首先判断了一个是否是商户登录 2118
-// 那么这个2118是怎么来的呢，我们下后面章节会提到，这里就先不详细讲解
-// 你只要知道以2118开头的是商户登录就行
-// 如果是商户登录
-// 进行商户登录---那么就会执行这一部分代码
-            FCResponse<Integer> fcResponse = this.merchantClient.checkMerchantByMerchantNumber(systemLoginRequest.getUsername());
-            if (!fcResponse.getCode().equals(HttpFcStatus.DATASUCCESSGET.getCode())) {
-                return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), fcResponse.getMsg(), null);
-            }
-            // 判断商户是否注册
-            if (fcResponse.getData() == 0) {
-                // 未注册
-                return FCResponse.dataResponse(HttpFcStatus.DATAEMPTY.getCode(), HttpMsg.merchant.MERCHANT_NO_REGISTER.getMsg(), null);
-            }
-            // 根据商户号获取商户信息
-            FCResponse<MerchantResponse> merchantFcResponse = this.merchantClient.getMerchantByMerchantNumber(systemLoginRequest.getUsername());
-            if (!fcResponse.getCode().equals(HttpFcStatus.DATASUCCESSGET.getCode())) {
-                return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), fcResponse.getMsg(), null);
-            }
-            // 校验密码
-            // 比对密码
-            MerchantResponse merchantResponse = merchantFcResponse.getData();
-            if (!StringUtils.equals(merchantResponse.getPassword(), systemLoginRequest.getPassword())) {
-                return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), HttpMsg.merchant.MERCHANT_MESSAGE_ERROR.getMsg(), null);
-            }
-            // 执行登录
-            MerchantInfo merchantInfo = new MerchantInfo();
-            merchantInfo.setId(merchantResponse.getId());
-            merchantInfo.setPhone(merchantResponse.getPhone());
-            LoginInfoData loginInfoData = new LoginInfoData();
-            loginInfoData.setId(merchantInfo.getId());
-            loginInfoData.setPhone(merchantResponse.getPhone());
-            // 设置为商户标识
-            loginInfoData.setResources("merchant");
-            try {
-                String token = JwtUtils.generateToken(loginInfoData, this.jwtProperties.getPrivateKey(), this.jwtProperties.getExpire());
-                CookieUtils.setCookie(request, response, jwtProperties.getCookieName(), token, jwtProperties.getCookieMaxAge() * 60);
-                Map<String, Object> map = new HashMap<>();
-                map.put ("token", token);
-                return FCResponse.dataResponse(HttpFcStatus.DATASUCCESSGET.getCode(), HttpMsg.merchant.MERCHANT_LOGIN_SUCCESS.getMsg(), map);
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new FCException("系统错误");
-            }
+        // 根据用户名查询用户（这里也是通过远程调用来实现）
+        FCResponse<User> userFCResponse = this.userClient.getUserByName(systemLoginRequest.getUsername());
+        if (!userFCResponse.getCode().equals(HttpFcStatus.DATASUCCESSGET.getCode())) {
+            return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), userFCResponse.getMsg(), null);
+        }
+        User user = userFCResponse.getData();
+        if (user.getUserStatus().equals(StatusEnum.USER_DISABLE)) {
+            return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), HttpMsg.user.USER_DISABLE.getMsg(), null);
+        }
+        // 校验密码
+        if (!StringUtils.equals("123456", systemLoginRequest.getPassword())) {
+            return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), HttpMsg.user.USER_MESSAGE_ERROR.getMsg(), null);
+        }
+        // 执行登录
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(user.getUserId());
+        userInfo.setPhone(user.getUserPhone());
+        LoginInfoData loginInfoData = new LoginInfoData();
+        loginInfoData.setId(userInfo.getUserId());
+        loginInfoData.setPhone(userInfo.getPhone());
+        // 设置为系统标识
+        loginInfoData.setResources("system");
+        try {
+            String token = JwtUtils.generateToken(loginInfoData, this.jwtProperties.getPrivateKey(), this.jwtProperties.getExpire());
+            CookieUtils.setCookie(request, response, jwtProperties.getCookieName(), token, jwtProperties.getCookieMaxAge() * 60);
+            Map<String, Object> map = new HashMap<>();
+            map.put("token", token);
+            return FCResponse.dataResponse(HttpFcStatus.DATASUCCESSGET.getCode(), HttpMsg.user.USER_LOGIN_SUCCESS.getMsg(), map);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new FCException("系统错误");
+        }
 ```
-对上面代码进行讲解
 ```java
 这里我们是用了openFeign远程调用（后面讲解）
-1.FCResponse<Integer> fcResponse = this.merchantClient.checkMerchantByMerchantNumber(systemLoginRequest.getUsername());
-通过商户号判断商户是否注册，若已注册，则返回20000,并且data不为0
-2.FCResponse<MerchantResponse> merchantFcResponse = this.merchantClient.getMerchantByMerchantNumber(systemLoginRequest.getUsername());
-通过商户号查询商户信息，同样的，请求成功返回20000，并且data不为空
-3.校验密码
-4.校验通过，设置登录信息LoginInfoData
-5.调用生成token的工具类（上面我们已经描述）
-6.返回一个Token信息
-7.将其设置到cookie中，并设置名字为token，并设置失效时间
+1.FCResponse<User> userFCResponse = this.userClient.getUserByName(systemLoginRequest.getUsername());
+2.校验密码
+3.校验通过，设置登录信息LoginInfoData
+4.调用生成token的工具类（上面我们已经描述）
+5.返回一个Token信息
+6.将其设置到cookie中，并设置名字为token，并设置失效时间
 ```
 在这里我们还要用到这个JwtProperties类
 ```java
@@ -337,52 +320,6 @@ public class JwtProperties {
 并且名称要和配置文件中的属性名一致
 使用init()方法来初始化一个公钥和密钥
 ```
-#### 接着现在是系统用户登录逻辑
-```java
-        // 这里就是不是商户登录后台系统，系统管理员来登录系统
-        // 否则是系统管理员登录
-        // 根据用户名查询用户（这里也是通过远程调用来实现）
-        FCResponse<User> userFCResponse = this.userClient.getUserByName(systemLoginRequest.getUsername());
-        if (!userFCResponse.getCode().equals(HttpFcStatus.DATASUCCESSGET.getCode())) {
-            return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), userFCResponse.getMsg(), null);
-        }
-        User user = userFCResponse.getData();
-        if (user.getUserStatus().equals(StatusEnum.USER_DISABLE)) {
-            return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), HttpMsg.user.USER_DISABLE.getMsg(), null);
-        }
-        // 校验密码
-        if (!StringUtils.equals("123456", systemLoginRequest.getPassword())) {
-            return FCResponse.dataResponse(HttpFcStatus.AUTHFAILCODE.getCode(), HttpMsg.user.USER_MESSAGE_ERROR.getMsg(), null);
-        }
-        // 执行登录
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUserId(user.getUserId());
-        userInfo.setPhone(user.getUserPhone());
-        LoginInfoData loginInfoData = new LoginInfoData();
-        loginInfoData.setId(userInfo.getUserId());
-        loginInfoData.setPhone(userInfo.getPhone());
-        // 设置为系统标识
-        loginInfoData.setResources("system");
-        try {
-            String token = JwtUtils.generateToken(loginInfoData, this.jwtProperties.getPrivateKey(), this.jwtProperties.getExpire());
-            CookieUtils.setCookie(request, response, jwtProperties.getCookieName(), token, jwtProperties.getCookieMaxAge() * 60);
-            Map<String, Object> map = new HashMap<>();
-            map.put("token", token);
-            return FCResponse.dataResponse(HttpFcStatus.DATASUCCESSGET.getCode(), HttpMsg.user.USER_LOGIN_SUCCESS.getMsg(), map);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new FCException("系统错误");
-        }
-```
-```text
-其实上面的代码和商户登录的逻辑一样，也是密码校验通过进行信息保存
-不一样的是我们在保存登录标识时用户有不同的标识属性
-1.会员登录时，保存的标识是member（当然这里会员没有权限登录后台系统）
-2.商户登录时，保存的标识是merchant
-3.系统登录时，保存的标识是system
-```
-### 那么这么做的意思是啥呢
-我们通过保存不同的标识，来具体到操作哪一个数据库，当我们获取用户信息时，就根据标识来判断是哪一种用户
 ### 实践操作
 #### 首先要启动我们的nacos（我是安装在window上的，推荐安装在Linux上）
 启动能看到这个界面就启动成功了
@@ -410,13 +347,6 @@ public class JwtProperties {
 发送请求
 接着就会看见如下信息,就可以看见返回的token信息，那么这个token信息是用来交换用户信息的，这样就认证成功了
 ![system-login-user-success](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/codeworld-cloud-auth/system-login-user-success.png)
-#### 调用我们的系统登录接口（测试商户登录登录）
-![system-login-merchant](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/codeworld-cloud-auth/system-login-merchant.png)
-这里呢，使用的是json数据，username:21181611095746339,password:123456
-发送请求
-接着就会看见如下信息,就可以看见返回的token信息，那么这个token信息是用来交换用户信息的，这样就认证成功了
-![system-login-merchant-success](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/codeworld-cloud-auth/system-login-merchant-success.png)
-
 ```text
 那么到这里我们的用户认证信息就完成了，不过还没有给用户授权，那么为什么这样做登录呢？
 这样做的是我们我们可以通过不同的登录标识来对应回去用户的权限信息。
