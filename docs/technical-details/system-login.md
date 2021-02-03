@@ -5,6 +5,8 @@
 * [CodeWorld-Cloud-Shop Redis的安装和使用](environmental-installation/environmental-installation-redis.md)
 * [CodeWorld-Cloud-Shop RabbitMQ的安装和使用](environmental-installation/environmental-installation-rabbitmq.md)
 * [CodeWorld-Cloud-Shop ElasticSearch的安装和使用](environmental-installation/environmental-installation-elasticsearch.md)
+### 系统后台项目地址
+[系统后台前端项目地址](https://github.com/javaenigneer/code-shop-system)
 ### POM文件
 ```java
 <dependencies>
