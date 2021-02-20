@@ -171,3 +171,8 @@ XXL-JOB是一个轻量级分布式任务调度平台，其核心设计目标是�
 .....
 ```
 目前就使用到了这些基主要的技术，当然还没完，后面会继续更新
+
+### 欢迎加入QQ群(964285437)
+![QQ群](https://fcblog-1300450814.cos.ap-chengdu.myqcloud.com/2020/hexoblog/temp_qrcode_share_964285437.png)
+### 公众号
+![公众号](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/qrcode_for_gh_e90987068371_258.jpg)

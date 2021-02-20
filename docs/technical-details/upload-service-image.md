@@ -195,3 +195,5 @@ public class TencentCOS {
 
 ### 欢迎加入QQ群(964285437)
 ![QQ群](https://fcblog-1300450814.cos.ap-chengdu.myqcloud.com/2020/hexoblog/temp_qrcode_share_964285437.png)
+### 公众号
+![公众号](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/qrcode_for_gh_e90987068371_258.jpg)

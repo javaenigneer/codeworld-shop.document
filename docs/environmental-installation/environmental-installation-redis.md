@@ -203,5 +203,10 @@ try {
         }
 ```
 Redis🉐️简单使用就到这里。想继续了解其中的数据类型需要你自己去研究，亲自操作印象更深刻，是不？
+
+好了，本次的技术分享就到这里了？如果觉得不错的话，点亮一下小星星[codeworld-cloud-shop](https://github.com/javaenigneer/codeworld-cloud-shop-api)
+只看不点，不是好孩子哦！！
 ### 欢迎加入QQ群(964285437)
 ![QQ群](https://fcblog-1300450814.cos.ap-chengdu.myqcloud.com/2020/hexoblog/temp_qrcode_share_964285437.png)
+### 公众号
+![公众号](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/qrcode_for_gh_e90987068371_258.jpg)

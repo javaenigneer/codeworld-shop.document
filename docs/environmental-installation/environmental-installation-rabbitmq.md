@@ -117,5 +117,9 @@ Queues：队列，即消息队列，消息存放在队列中，等待消费，�
 * [RabbitMQ实践应用一](https://feicheng.xyz/2020/04/14/RabbitMQ%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8%E4%B8%80/)
 * [RabbitMQ实践应用二-消峰限流](https://feicheng.xyz/2020/04/19/RabbitMQ%E5%AE%9E%E8%B7%B5%E4%BA%8C-%E6%B6%88%E5%B3%B0%E9%99%90%E6%B5%81/)
 * [RabbitMQ实践应用二-消峰限流补充](https://feicheng.xyz/2020/04/19/RabbitMQ%E5%AE%9E%E8%B7%B5%E4%BA%8C-%E6%B6%88%E5%B3%B0%E9%99%90%E6%B5%81%E8%A1%A5%E5%85%85/)
+好了，本次的技术分享就到这里了？如果觉得不错的话，点亮一下小星星[codeworld-cloud-shop](https://github.com/javaenigneer/codeworld-cloud-shop-api)
+只看不点，不是好孩子哦！！
 ### 欢迎加入QQ群(964285437)
 ![QQ群](https://fcblog-1300450814.cos.ap-chengdu.myqcloud.com/2020/hexoblog/temp_qrcode_share_964285437.png)
+### 公众号
+![公众号](https://codeworld-cloud-shop-1300450814.cos.ap-chengdu.myqcloud.com/qrcode_for_gh_e90987068371_258.jpg)
