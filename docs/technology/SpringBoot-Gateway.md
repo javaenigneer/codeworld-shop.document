@@ -249,6 +249,7 @@ public class CodeworldUserApplication {
 我们在这里可以看见访问的两个接口都可以请求到数据，通过网关来实现接口的转发，可以转发到我们的服务接口上面
 
 我们这里呢只是对gateway的简单讲解，后面还会继续追加
+[项目地址](https://github.com/javaenigneer/SpringBoot-demo)
 好了，本次的技术解析就到这里了？如果觉得不错的话，点亮一下小星星[codeworld-cloud-shop](https://github.com/javaenigneer/codeworld-cloud-shop-api)
 只看不点，不是好孩子哦！！！
 ### 欢迎加入QQ群(964285437)
