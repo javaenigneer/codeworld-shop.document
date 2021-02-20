@@ -117,6 +117,7 @@ spring:
             - Path=/codeworld-user/**
 ```
 我们来讲讲application.yml文件的配置信息
+
 ```text
 1.配置网关全局跨域配置信息，是否携带header，设置跨域请求，设置跨域请求的方法
 spring:
