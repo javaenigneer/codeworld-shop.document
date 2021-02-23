@@ -3,7 +3,7 @@
 
 相信你在学习这篇这篇文章时，你已经对登录认证有了全面的认识
 没有的话，那你还要继续进行奶妈级教学
-[CodeWorld-Cloud-Shop 系统登录详解篇](system-login.md)
+[CodeWorld-Cloud-Shop 系统登录详解篇](/technical-details/system-login.md)
 
 ### POM文件(和登录一样没变的，因为是在同一个模块里面的，还是上一下代码)
 ```java
